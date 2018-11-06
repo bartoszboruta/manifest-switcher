@@ -1,20 +1,27 @@
-import express from 'express'
-import request from 'request'
-import morgan from 'morgan'
+var express = require('express')
+var request = require('request')
+var morgan = require('morgan')
 
 const app = express()
 app.use(morgan('dev'))
 
 app.get('/manifest', async (req, res, next) => {
-  const {
-    query: { id, manifest },
-  } = req
-
-  await request(manifest, async (error, response, body) => {
-    const parsedBody = JSON.parse(body)
-    parsedBody.start_url = `${parsedBody.start_url}/${id}`
-    await res.json(parsedBody)
-  })
+  try {
+    const {
+      query: { id, manifest },
+    } = req
+    await request(manifest, async (error, response, body) => {
+      try {
+        const parsedBody = JSON.parse(body)
+        parsedBody.start_url = `${parsedBody.start_url}/${id}`
+        await res.json(parsedBody)
+      } catch (_) {
+        res.status(404).send('An error occured')
+      }
+    })
+  } catch (_) {
+    res.status(404).send('An error occured')
+  }
 })
 
 const PORT = process.env.PORT || 8000
