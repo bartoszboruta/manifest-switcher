@@ -5,7 +5,7 @@ import morgan from 'morgan'
 const app = express()
 app.use(morgan('dev'))
 
-app.get('/', async (req, res, next) => {
+app.get('/manifest', async (req, res, next) => {
   const {
     query: { id, manifest },
   } = req
