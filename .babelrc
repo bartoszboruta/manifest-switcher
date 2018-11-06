@@ -1,0 +1,15 @@
+{
+  "presets": [
+      "es2015"
+  ],
+  "env": {
+      "test": {
+          "presets": [
+              "es2015"
+          ]
+      },
+      "production": {
+          "presets": ["minify"]
+        }
+  }
+}

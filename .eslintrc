@@ -1,0 +1,26 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["@selleo/react", "prettier/react"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "no-debugger": "off",
+    "no-console": [
+      "error",
+      {
+        "allow": ["info", "error"]
+      }
+    ]
+  },
+  "globals": {
+    "clients": true,
+    "cy": true,
+    "Cypress": true,
+    "skipWaiting": true,
+    "mockApolloClient": true
+  }
+}
