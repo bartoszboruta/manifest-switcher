@@ -13,7 +13,7 @@ app.get('/manifest', async (req, res, next) => {
     await request(manifest, async (error, response, body) => {
       try {
         const parsedBody = JSON.parse(body)
-        parsedBody.start_url = `${parsedBody.start_url}/${id}`
+        parsedBody.start_url = `${parsedBody.start_url}?pvs=${id}`
         await res.json(parsedBody)
       } catch (_) {
         res.status(404).send('An error occured')
